@@ -16,20 +16,20 @@ from joycontrol.server import create_hid_server
 
 logger = logging.getLogger(__name__)
 
-async def _main(args):
+async def _main():
     spi_flash = FlashMemory()
 
     # Get controller name to emulate from arguments
     controller = Controller.from_arg("PRO_CONTROLLER")
 
-    with utils.get_output(path=args.log, default=None) as capture_file:
+    with utils.get_output(path=None, default=None) as capture_file:
         # prepare the the emulated controller
         factory = controller_protocol_factory(controller, spi_flash=spi_flash)
         ctl_psm, itr_psm = 17, 19
-        transport, protocol = await create_hid_server(factory, reconnect_bt_addr=args.reconnect_bt_addr,
+        transport, protocol = await create_hid_server(factory, reconnect_bt_addr=None,
                                                       ctl_psm=ctl_psm,
                                                       itr_psm=itr_psm, capture_file=capture_file,
-                                                      device_id=args.device_id)
+                                                      device_id=None)
 
         controller_state = protocol.get_controller_state()
 
@@ -137,5 +137,5 @@ if __name__ == '__main__':
 
     loop = asyncio.get_event_loop()
     loop.run_until_complete(
-        _main(args)
+        _main()
     )
