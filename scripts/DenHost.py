@@ -53,10 +53,12 @@ async def autoHost(controller_state):
 async def exitPeering(controller_state):
     # Exit pairing controllers
     await button_push(controller_state, 'a')
+    time.sleep(1)
     await button_push(controller_state, 'down')
     await button_push(controller_state, 'down')
     await button_push(controller_state, 'down')
     await button_push(controller_state, 'a')
+    time.sleep(1)
     #     At the home screen
     await button_push(controller_state, 'up')
     await button_push(controller_state, 'left')
