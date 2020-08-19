@@ -35,9 +35,9 @@ async def _main():
 
         # Create command line interface and add some extra commands
         try:
-            hostLoop = asyncio.get_event_loop()
+            loop = asyncio.get_event_loop()
             exitPeering(controller_state)
-            hostLoop.run_until_complete(
+            loop.run_until_complete(
                 autoHost(controller_state)
             )
         finally:
