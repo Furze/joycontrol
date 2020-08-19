@@ -71,7 +71,7 @@ async def openPkm(controller_state):
 
     logger.info("Waiting for pokemon to start")
     await asyncio.sleep(15)
-    await button_push(controller_state, 'a')
+    await button_push(controller_state, 'a', sec=1)
     logger.info("Waiting to get into the game")
     await asyncio.sleep(8)
     #sleep to get into the game
