@@ -52,23 +52,11 @@ async def autoHost(controller_state):
 async def exitPeering(controller_state):
     await asyncio.sleep(5)
     # Exit pairing controllers
-    await asyncio.sleep(5)
     await button_push(controller_state, 'a')
-    await asyncio.sleep(5)
-    await button_push(controller_state, 'down')
-    await button_push(controller_state, 'down')
-    await button_push(controller_state, 'down')
-    await button_push(controller_state, 'down')
-    await button_push(controller_state, 'down')
-    await button_push(controller_state, 'down')
-    await button_push(controller_state, 'down')
-    await button_push(controller_state, 'a')
-    await asyncio.sleep(5)
+    await asyncio.sleep(1)
+    await button_push(controller_state, 'home')
+    await asyncio.sleep(1)
     #     At the home screen
-    await button_push(controller_state, 'up')
-    await button_push(controller_state, 'left')
-    await button_push(controller_state, 'left')
-    await button_push(controller_state, 'left')
 
 async def openPkm(controller_state):
     #open
