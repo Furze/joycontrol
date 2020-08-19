@@ -55,9 +55,9 @@ async def exitPeering(controller_state):
     await asyncio.sleep(5)
     await button_push(controller_state, 'a')
     await asyncio.sleep(5)
-    await button_push(controller_state, 'down')
-    await button_push(controller_state, 'down')
-    await button_push(controller_state, 'down')
+    await button_push(controller_state, 'down', 0.3)
+    await button_push(controller_state, 'down', 0.3)
+    await button_push(controller_state, 'down', 0.3)
     await button_push(controller_state, 'a')
     await asyncio.sleep(5)
     #     At the home screen
