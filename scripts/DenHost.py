@@ -68,6 +68,7 @@ async def exitPeering(controller_state):
     await button_push(controller_state, 'up')
     await button_push(controller_state, 'left')
     await button_push(controller_state, 'left')
+    await button_push(controller_state, 'left')
 
 async def openPkm(controller_state):
     #open
