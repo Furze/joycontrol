@@ -1,14 +1,11 @@
-import argparse
 import asyncio
 import logging
 import os
 
-from aioconsole import ainput
 
 from joycontrol import logging_default as log, utils
-from joycontrol.command_line_interface import ControllerCLI
 from joycontrol.controller import Controller
-from joycontrol.controller_state import ControllerState, button_push, button_press, button_release
+from joycontrol.controller_state import button_push
 from joycontrol.memory import FlashMemory
 from joycontrol.protocol import controller_protocol_factory
 from joycontrol.server import create_hid_server
@@ -50,8 +47,10 @@ async def autoHost(controller_state):
 
 
 async def exitPeering(controller_state):
+    logger.info("Waiting for peering")
     await asyncio.sleep(5)
     # Exit pairing controllers
+    logger.info("Exiting to home menu")
     await button_push(controller_state, 'a')
     await button_push(controller_state, 'a')
     await asyncio.sleep(1)
@@ -60,20 +59,25 @@ async def exitPeering(controller_state):
     #     At the home screen
 
 async def openPkm(controller_state):
-    #open
+    logger.info("Opening pokemon")
     await button_push(controller_state, 'a')
     await button_push(controller_state, 'a')
     await button_push(controller_state, 'a')
 
+    logger.info("Selecting user")
     await asyncio.sleep(0.5)
     await button_push(controller_state, 'a')
+
+    logger.info("Waiting for pokemon to start")
     await asyncio.sleep(15)
     await button_push(controller_state, 'a')
-    await asyncio.sleep(10)
+    logger.info("Waiting to get into the game")
+    await asyncio.sleep(8)
     #sleep to get into the game
 
 
 async def setLinkCode(controller_state):
+    logger.info("Setting linkcode 1111 2114")
     await button_push(controller_state, 'plus')
     await button_push(controller_state, 'a')  # 1
     await button_push(controller_state, 'a')  # 1
@@ -93,6 +97,7 @@ async def setLinkCode(controller_state):
 
 
 async def startDen(controller_state):
+    logger.info("Connecting to internet")
     #open ycom
     await button_push(controller_state, 'y')
     await button_push(controller_state, 'plus')
@@ -101,27 +106,34 @@ async def startDen(controller_state):
     await button_push(controller_state, 'b')
     await button_push(controller_state, 'b')
 
+    logger.info("Open den")
     #open den
     await button_push(controller_state, 'a')
     await button_push(controller_state, 'a')
     await button_push(controller_state, 'a')
     #TODO: frame skip 3 days
+    logger.info("Start den")
     await setLinkCode(controller_state)
-    await button_push(controller_state, 'a') #start den
-    #small sleep 1s?
+    await button_push(controller_state, 'a')
     await asyncio.sleep(1)
-    await button_push(controller_state, 'up') #start den
+    logger.info("Ready up")
+
+    await button_push(controller_state, 'up')
     await button_push(controller_state, 'a') #start den
-    #TODO: wait until the 2m mark (wait 60s)
+    logger.info("Wait till 2mins ish left")
     await asyncio.sleep(60)
+    logger.info("actually start")
     await button_push(controller_state, 'a') #start den
     await button_push(controller_state, 'a') #start den
     #sleep 15s
+    logger.info("Make sure we are in the raid")
     await asyncio.sleep(15)
 
+    logger.info("quit and close pokemon")
     await button_push(controller_state, 'home') #exit raid and close pkm
     await button_push(controller_state, 'x')
     await button_push(controller_state, 'a')
+    await asyncio.sleep(10)
 
 
 
