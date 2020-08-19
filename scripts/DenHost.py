@@ -2,7 +2,6 @@ import argparse
 import asyncio
 import logging
 import os
-import time
 
 from aioconsole import ainput
 
@@ -51,15 +50,16 @@ async def autoHost(controller_state):
 
 
 async def exitPeering(controller_state):
-    time.sleep(5)
+    await asyncio.sleep(5)
     # Exit pairing controllers
+    await asyncio.sleep(5)
     await button_push(controller_state, 'a')
-    time.sleep(5)
+    await asyncio.sleep(5)
     await button_push(controller_state, 'down')
     await button_push(controller_state, 'down')
     await button_push(controller_state, 'down')
     await button_push(controller_state, 'a')
-    time.sleep(5)
+    await asyncio.sleep(5)
     #     At the home screen
     await button_push(controller_state, 'up')
     await button_push(controller_state, 'left')
@@ -69,9 +69,9 @@ async def openPkm(controller_state):
     #open
     await button_push(controller_state, 'a')
     await button_push(controller_state, 'a')
-    time.sleep(2)
+    await asyncio.sleep(2)
     await button_push(controller_state, 'a')
-    time.sleep(2)
+    await asyncio.sleep(2)
     #sleep to get into the game
 
 
@@ -90,7 +90,7 @@ async def setLinkCode(controller_state):
     await button_push(controller_state, 'a')  # 1
     await button_push(controller_state, 'plus')  # 1
     #tiny sleep here
-    time.sleep(1)
+    await asyncio.sleep(1)
     await button_push(controller_state, 'a')  # 1
 
 
@@ -99,7 +99,7 @@ async def startDen(controller_state):
     await button_push(controller_state, 'y')
     await button_push(controller_state, 'plus')
     #sleep to go online
-    time.sleep(8)
+    await asyncio.sleep(8)
     await button_push(controller_state, 'b')
     await button_push(controller_state, 'b')
 
@@ -111,15 +111,15 @@ async def startDen(controller_state):
     await setLinkCode()
     await button_push(controller_state, 'a') #start den
     #small sleep 1s?
-    time.sleep(1)
+    await asyncio.sleep(1)
     await button_push(controller_state, 'up') #start den
     await button_push(controller_state, 'a') #start den
     #TODO: wait until the 2m mark (wait 60s)
-    time.sleep(60)
+    await asyncio.sleep(60)
     await button_push(controller_state, 'a') #start den
     await button_push(controller_state, 'a') #start den
     #sleep 15s
-    time.sleep(15)
+    await asyncio.sleep(15)
 
     await button_push(controller_state, 'home') #exit raid and close pkm
     await button_push(controller_state, 'x')
