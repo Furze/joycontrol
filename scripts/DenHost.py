@@ -65,10 +65,11 @@ async def openPkm(controller_state):
     await button_push(controller_state, 'a')
     await button_push(controller_state, 'a')
 
-    await asyncio.sleep(1)
+    await asyncio.sleep(0.5)
+    await button_push(controller_state, 'a')
+    await asyncio.sleep(15)
     await button_push(controller_state, 'a')
     await asyncio.sleep(10)
-    await button_push(controller_state, 'a')
     #sleep to get into the game
 
 
@@ -105,7 +106,7 @@ async def startDen(controller_state):
     await button_push(controller_state, 'a')
     await button_push(controller_state, 'a')
     #TODO: frame skip 3 days
-    await setLinkCode()
+    await setLinkCode(controller_state)
     await button_push(controller_state, 'a') #start den
     #small sleep 1s?
     await asyncio.sleep(1)
