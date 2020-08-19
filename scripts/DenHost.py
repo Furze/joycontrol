@@ -65,9 +65,10 @@ async def openPkm(controller_state):
     await button_push(controller_state, 'a')
     await button_push(controller_state, 'a')
 
-    await asyncio.sleep(4)
+    await asyncio.sleep(5)
     await button_push(controller_state, 'a')
-    await asyncio.sleep(2)
+    await asyncio.sleep(5)
+    await button_push(controller_state, 'a')
     #sleep to get into the game
 
 
