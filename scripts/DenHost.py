@@ -53,6 +53,7 @@ async def exitPeering(controller_state):
     await asyncio.sleep(5)
     # Exit pairing controllers
     await button_push(controller_state, 'a')
+    await button_push(controller_state, 'a')
     await asyncio.sleep(1)
     await button_push(controller_state, 'home')
     await asyncio.sleep(1)
