@@ -36,9 +36,9 @@ async def _main():
         # Create command line interface and add some extra commands
         try:
             loop = asyncio.get_event_loop()
-            exitPeering(controller_state)
+            await exitPeering(controller_state)
             loop.run_until_complete(
-                autoHost(controller_state)
+                await autoHost(controller_state)
             )
         finally:
             logger.info('Stopping communication...')
